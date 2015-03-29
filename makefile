@@ -1,7 +1,10 @@
 CXX = g++
 
-TARGET = test_random test_slice
-object = test_random.o test_slice.o
+CFLAGS=-I../leveldb/include
+LDFLAG=-lpthread
+
+TARGET = test_random test_slice test
+object = test_random.o test_slice.o test.o
 
 .PHONY: echo clean
 	
@@ -16,6 +19,11 @@ test_slice:test_slice.o
 	${CXX} -o test_slice test_slice.o
 test_slice.o:test_slice.cpp util/slice.h
 	${CXX} -c test_slice.cpp
+
+test:test.o
+	${CXX} -o test test.o ../leveldb/libleveldb.a ${LDFLAG}
+test.o:test.cpp
+	${CXX} -c ${CFLAGS} test.cpp
 
 echo:
 	echo ${CPP_SRC}
