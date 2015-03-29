@@ -9,12 +9,12 @@ all:${TARGET}
 
 test_random:test_random.o
 	${CXX} -o test_random test_random.o
-test_random.o:test_random.cpp
+test_random.o:test_random.cpp 
 	${CXX} -c test_random.cpp
 
 test_slice:test_slice.o
 	${CXX} -o test_slice test_slice.o
-test_slice.o:test_slice.cpp
+test_slice.o:test_slice.cpp util/slice.h
 	${CXX} -c test_slice.cpp
 
 echo:
